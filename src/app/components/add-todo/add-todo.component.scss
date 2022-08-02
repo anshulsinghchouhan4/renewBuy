@@ -1,0 +1,23 @@
+.formPage{
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    .formDetails{
+        width: 50vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+        background-color:lightblue;
+        justify-content: space-around;
+    }
+}
+.action-button{
+    display: flex;
+    justify-content: space-around;
+}

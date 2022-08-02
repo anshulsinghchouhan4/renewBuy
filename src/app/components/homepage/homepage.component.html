@@ -1,0 +1,87 @@
+<div
+  class="homePage mt-2 ml-2"
+  [ngClass]="{ 'low-opacity': showNavigateModal }"
+>
+  <div class="todo-list pt-2 ps-3 pe-3">
+    <span class="header"> Todo List</span>
+    <button class="btn add-button" (click)="addTodo()">+</button>
+    <div class="card-holder">
+      <div class="card" *ngFor="let card of allCardForToDO">
+        <div class="card-body">
+          <h3 class="card-title">{{ card.title }}</h3>
+          <p class="card-text">
+            {{ card.text }}
+          </p>
+          <h5>{{ card.priority }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="in-progress pt-2 ps-3 pe-3">
+    <span class="header"> In Progress</span>
+    <button class="btn add-button" (click)="navigateCard()">+</button>
+    <div class="card-holder">
+      <div class="card" *ngFor="let card of allCardForInProgress">
+        <div class="card-body">
+          <h3 class="card-title">{{ card.title }}</h3>
+          <p class="card-text">
+            {{ card.text }}
+          </p>
+          <h5>{{ card.priority }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="completed pt-2 ps-3 pe-3">
+    <span class="header">Completed</span>
+    <div class="card-holder">
+      <div class="card" *ngFor="let card of allCardForComplete">
+        <div class="card-body">
+          <h3 class="card-title">{{ card.title }}</h3>
+          <p class="card-text">
+            {{ card.text }}
+          </p>
+          <h5>{{ card.priority }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Select Modal -->
+<div class="select-box" *ngIf="showNavigateModal">
+  <form
+    #formData="ngForm"
+    (ngSubmit)="onClickSubmit(formData)"
+    ngNativeValidate
+  >
+    <div class="select-modal ps-5 pe-5 pt-5">
+      <div class="action">
+        <!-- All Titles -->
+        <label for="selectTitle">Titles:</label>
+        <select name="selectTitle" id="selectTitle" ngModel required>
+          <option value="" selected disabled hidden>Choose here</option>
+          <option *ngFor="let card of allCardForToDO" [value]="card.title">
+            {{ card.title }}
+          </option>
+        </select>
+        <br />
+        <!-- Action -->
+        <label for="navigateToColumn">Action:</label>
+        <select name="navigateToColumn" id="navigateToColumn" ngModel required>
+          <option value="" selected disabled hidden>Choose here</option>
+          <option value="todo">To Do</option>
+          <option value="inProgress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div class="action-button mt-2">
+        <button class="btn btn-success">Submit</button>
+        <a
+          class="btn btn-danger"
+          (click)="showNavigateModal = !showNavigateModal"
+          >Cancel</a
+        >
+      </div>
+    </div>
+  </form>
+</div>
